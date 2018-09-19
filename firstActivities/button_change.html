@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <title>First Event</title>
+  <script>
+
+
+    function showCongratulations(theButtonClicked)
+    {
+        console.log("made it this far");
+
+        document.getElementById("result").innerHTML = "congratulations you did it!  <p> you got the page to update </p>"
+        theButtonClicked.innerHTML = "Click Me Again!"
+    }
+
+
+  </script>
+
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+
+  <button onclick="showCongratulations(this)">Click Me!</button>
+
+<section id="result">
+
+</section>
+
+
+</body>
+</html>
