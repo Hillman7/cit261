@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+  <title>Note it</title>
+  <script>
+
+
+
+
+      function saveNote()
+      {
+
+        // learned how to make dates.
+          var currentDateAndTime = new Date();
+
+
+          var aNoteDescription = document.getElementById("description").value;
+          var aNoteText = document.getElementById("notes").value ;
+
+         // putting the date to a string.
+          var aCompleteNote = currentDateAndTime.toLocaleString() + "--" + aNoteDescription;
+          aCompleteNote += "<p>" + aNoteText + "</p>"
+
+        // grab from the local storage previous notes.
+        var storedNotesString = localStorage.getItem("all_notes");
+
+        // parse the notes
+        var allNotes = JSON.parse(storedNotesString);
+
+        // if there are no notes yet make it a array.
+        if(allNotes == null)
+        { 
+           allNotes = []  ;
+        } 
+        
+        // added a note
+        allNotes.push(aCompleteNote);
+        var allNotesString = JSON.stringify(allNotes);
+
+        // save in local storage a file called all_notes
+        localStorage.setItem("all_notes", allNotesString);
+
+
+        // lets update the notes because we just saved something new
+        showAllNotes();
+
+
+        // clear what was there before
+        document.getElementById("description").value = null;
+        document.getElementById("notes").value = null;
+
+
+
+      }
+
+
+
+
+    function showAllNotes()
+    {
+
+
+
+    // get out of local storage the file all notes
+    var storedNotesString = localStorage.getItem("all_notes");
+		allNotes = JSON.parse(storedNotesString);
+
+    // if there is one
+		if (allNotes != null){
+      // make sure we put it in the right place
+	  		var noteDisplayer = document.getElementById("all_notes_display");
+
+        // empty it.
+	  		noteDisplayer.innerHTML = null
+	  		var numberOfNotes = allNotes.length
+
+        // loop through every note
+	  		for (var i = 0; i < allNotes.length; i++) {
+	  			var aNote = allNotes[i];
+
+
+          // shows the notes
+	  			noteDisplayer.innerHTML += "<hr><p>"+ aNote +"</p>"
+	  	
+      	}
+	  	}
+
+    }
+
+
+
+
+
+  </script>
+
+  <style>
+
+   input 
+   {
+
+     border:none;
+     border-radius:5px;
+     box-shadow:0px 0px 5px #666666 inset;
+     height: 25px;
+     width:200px;
+     text-indent:5px;
+
+
+   }
+
+   body{
+     background-color:cyan;
+   }
+
+   input:focus{
+     outline:none;
+   }
+
+   #notes{
+     width:500px;
+     padding-left:5px;
+     border:none;
+     border-radius:5px;
+     box-shadow:0px 0px 5px #666666 inset;
+     text-indent:5px;
+   }
+
+   textarea
+   {
+    margin-top: 10px;
+    border:none;
+    border-radius:5px;
+    box-shadow:0px 0px 5px #666666 inset;
+    width:90%;
+    height: 150px;
+    text-indent:5px;   
+    resize:none;
+    overflow:scroll; 
+   }
+    
+
+  </style>
+</head>
+
+<body onload = "showAllNotes()">
+
+    <h1>Note it!</h1>
+
+    Description:<input id="description">
+    <textarea id="notes" placeholder="note it down don't forget!"></textarea>
+
+
+  <button onclick="saveNote()"> Save</button>
+
+  <button onclick="showAllNotes()"> showAllNotes</button>
+
+  <section id="all_notes_display"></section>
+
+</body>
+</html>
