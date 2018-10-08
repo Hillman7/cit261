@@ -1,0 +1,302 @@
+// Your code here.
+function range(start, end, stepValue)
+{
+  let myArray = [];
+  
+  
+if (stepValue == undefined)
+{
+  for (let i = start; i <= end; i ++)
+  {
+    myArray.push(i);    
+  }
+  
+    return myArray;
+
+  
+}
+  
+// we probably need to go down.  
+else
+{
+
+  for (let i = start; i >= end; i +=stepValue)
+  {
+    myArray.push(i);    
+  }    
+}
+  return myArray;
+}
+
+function sum(array)
+{
+ // return the sum of numbers.
+  let total = 0;
+  parseInt(total);
+  
+  for (let i = 0; i < array.length; i++)
+  {
+    total += parseInt(array[i]);
+    
+    
+  }
+       
+  return total;
+  
+}
+
+
+// end question 1
+
+
+
+
+// Your code here.
+function reverseArray(myArray)
+{
+ let newArray = [];
+  for (let i = myArray.length -1; i >= 0; i--)
+  {
+    newArray.push(myArray[i]); 
+  }
+  return newArray;
+}
+
+/*****************
+ * Author: Jesse Hillman
+ *
+ *
+ *****/
+function reverseArrayInPlace(myArray)
+{
+ // check if odd or even
+  if (myArray.length % 2 == 0)
+  {
+   // even 
+    
+  }
+  else
+  {
+   // odd
+    // loop through half array
+    for (let i = 0; i < Math.floor(myArray.length / 2); i++)
+    {
+      // briefly hold element in the end // 5,4
+        let temp = myArray[myArray.length - 1 - i];
+     
+     // overwrite with mirror image
+      myArray[myArray.length - 1 - i] = myArray[i];
+     
+      // put the temp in the place where the mirror image used to be.
+      myArray[i] = temp;
+      
+    }
+    
+  }
+  
+  return myArray;
+}
+
+console.log(reverseArray(["A", "B", "C"]));
+// → ["C", "B", "A"];
+let arrayValue = [1, 2, 3, 4, 5];
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+// → [5, 4, 3, 2, 1]
+
+
+
+// end question 2
+
+
+
+
+
+// Your code here.
+/**************
+ * Author: Jesse Hillman
+ *
+ *****************/
+function arrayToList(array)
+{  
+  // binding to hold the list so far
+  let list = { 
+    value: array[0],
+  };
+  
+  // holdListHead
+  let heldList = list;
+  
+  // loop from second to the end.
+  for (let i = 1; i < array.length; i++)
+  {    
+    // add a object to the list
+    list.rest = { value: array[i],rest:null } 
+    // move to new list
+    list = list.rest;
+  }
+  list = heldList;  
+  return list;
+}
+
+/**********
+ * Author: Jesse Hillman
+ *
+ ***********/
+function listToArray(list)
+{
+  let array = [];
+ 
+  for (let node = list; node != null; node = node.rest)
+  {
+    array.push(node.value);    
+  }
+  return array;
+}
+
+
+/*******
+ * Author: Jesse Hillman
+ *
+ *
+ *****/
+function prepend(element,list)
+{
+  let newlist = {
+    value:element,
+    rest:list
+  };
+  
+  return newlist;
+}
+
+
+/********
+ * Author: Jesse Hillman
+ * find and display that element
+ *************/
+function nth(list,number)
+{
+  // temp 
+  let temp = list;
+  for (let i = 0; i < number; i++)
+  {
+    list = list.rest;
+  }
+  return list.value; 
+}
+
+
+
+/***************
+ * Author: Jesse Hillman
+ * recursive find or nth
+ ******/
+function find(list,number)
+{
+  
+  if (number <= 0)
+  {
+   // stop
+    return list.value;
+  }
+ 
+ // move to the next node
+ return find(list.rest,number -= 1); 
+
+  
+}
+
+
+
+
+console.log(arrayToList([10, 20]));
+// → {value: 10, rest: {value: 20, rest: null}}
+console.log(listToArray(arrayToList([10, 20, 30])));
+// → [10, 20, 30]
+console.log(prepend(10, prepend(20, null)));
+// → {value: 10, rest: {value: 20, rest: null}}
+console.log(nth(arrayToList([10, 20, 30]), 1));
+// → 20
+
+console.log(find(arrayToList([10, 20, 30]), 1));
+
+// end question 3
+// Your code here.
+//function deepEqual(value1,value2)
+//{  
+  // its a object // correct
+  //if (typeof(value1) == "object" && value1 != null)
+  //{  
+    // check that they have the same number of properties
+    //if (Object.keys(value1).length == Object.keys(value2).length)
+    //{
+      // loop through each property
+      //for (let i = 0; i < Object.keys(value1).length; i++)
+      //{
+        // get the names of properties
+        // var value1Names = Object.getOwnPropertyNames(value1);
+    	// var value2Names = Object.getOwnPropertyNames(value2);
+        
+              // property values match
+        //if (value1[value1Names[i]] === value2[value2Names[i]])
+         // return true;
+        //else
+       // {
+        //  return false;
+       // }
+        
+ //     }
+   // }
+   // else
+   // {
+    //  return false;
+   // }
+ // }
+ // else
+ // {
+   //if (value1 === value2)
+   //  return true;
+   // else
+    //  return false;
+ // }
+  
+  
+//}
+
+
+
+function deepEqual(a, b) {
+  
+  // if they are the same number
+  if (a === b) return true;
+  
+  // if one of them is not a object
+  if (a == null || typeof a != "object" ||
+      b == null || typeof b != "object") return false;
+
+  let keysA = Object.keys(a), keysB = Object.keys(b);
+
+  // if they don't have the same number of properties
+  if (keysA.length != keysB.length) return false;
+
+  // if they don't have the same values
+  for (let key of keysA) {
+    if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false;
+  }
+
+  return true;
+}
+
+
+
+
+let obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, {here: 1, object: 2}));
+// → false
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// → true
+
+// end question 4

@@ -1,0 +1,198 @@
+<p>🎈</p>
+
+<script>
+  // Your code here
+  let balloon = document.querySelector('p');
+  let temp = 10;
+  document.body.addEventListener("keydown", function inflate(event){ 
+    // up was pressed
+    if (event.key == 'ArrowUp')
+    {
+     console.log("hello");
+      
+      
+      temp = parseInt(temp) +10;
+      console.log(temp);
+      balloon.style.fontSize = temp + "px";
+    }
+    
+    if (temp > 70)
+    {
+      
+     balloon.textContent = "💥"; 
+     document.body.removeEventListener("keydown", inflate);
+
+    }
+    
+    
+  });
+  
+  
+
+  
+  
+  
+</script>
+
+// end problem 1
+
+<style>
+    .trail { /* className for the trail elements */
+      position: absolute;
+      height: 6px; width: 6px;
+      border-radius: 3px;
+      background: teal;
+    }
+    body {
+      height: 300px;
+    }
+  </style>
+  
+  <script>
+    // Your code here.
+   /* 
+    let trail = [];
+    
+    // make 15 followers trail.
+    for (let i = 0; i < 15; i++)
+    {
+      let follower = document.createElement("div");
+      follower.className = "trailer";
+      
+      // put it into the body so we can see it
+      document.body.appendChild(follower);
+          trail.push(follower);
+    }
+    currentFollower = 0;;
+    
+    // added a listener for mouse movements on the window
+    window.addEventListener("mousemove", function move(event)
+                            {
+      
+      let myTrailer = trail[currentFollower];
+      
+      // move it around
+      myTrailer.style.left = (event.pageX - 3) + "px";
+          myTrailer.style.top = (event.pageY - 3) + "px";
+  
+          currentFollower = (currentFollower + 1) % trail.length;
+  
+      
+    });
+    
+    */
+    
+    // make a array
+    let dots = [];
+    // make as many dots as you want.
+    for (let i = 0; i < 15; i++) {
+      let node = document.createElement("div");
+      node.className = "trail";
+      // add them in
+      document.body.appendChild(node);
+      dots.push(node);
+    }
+    let currentDot = 0;
+    
+    window.addEventListener("mousemove", function myFunction(event) {
+      
+      let dot = dots[currentDot];
+      dot.style.left = (event.pageX - 3) + "px";
+      dot.style.top = (event.pageY - 3) + "px";
+      
+      // move forward and wrap back around when you hit the end.
+      currentDot = (currentDot + 1) % dots.length;
+    });
+    
+    
+    
+    
+  </script>
+
+
+// end problem 2
+
+
+<tab-panel>
+    <div data-tabname="one">Tab one</div>
+    <div data-tabname="two">Tab two</div>
+    <div data-tabname="three">Tab three</div>
+  </tab-panel>
+  <script>
+    
+    
+    function asTabs(node) {
+      
+      // this is intense..... map is a function that creates a array
+      let tabs = Array.from(node.children).map(function(node) {
+        
+        let button = document.createElement("button");
+        
+        // get the name of the tab from data-tabname
+        button.textContent = node.getAttribute("data-tabname");
+        
+        let tab = {node, button};
+        
+        button.addEventListener("click", 
+                                function()
+                                {
+                                  selectTab(tab)
+                                    }
+                               );
+        
+        
+        return tab;
+      });
+  
+      let tabList = document.createElement("div");
+      
+      for (let {button} of tabs)
+        tabList.appendChild(button);
+      node.insertBefore(tabList, node.firstChild);
+  
+      // grab a tab
+      function selectTab(selectedTab) {
+        for (let tab of tabs) {
+          let selected = tab == selectedTab;
+          tab.node.style.display = selected ? "" : "none";
+          tab.button.style.color = selected ? "red" : "";
+        }
+      }
+      selectTab(tabs[0]);
+    }
+  
+    asTabs(document.querySelector("tab-panel"));
+  </script>
+
+
+// querySelector  used to find specific classes or id's
+// my attempt=
+
+<tab-panel>
+  <div data-tabname="one">Tab one</div>
+  <div data-tabname="two">Tab two</div>
+  <div data-tabname="three">Tab three</div>
+</tab-panel>
+<script>
+  function asTabs(node) {
+    // Your code here.
+    let documentVar = document.querySelector("tab-panel");
+    let myDiv = document.createElement("div");
+    let myButton1 = document.createElement("button");
+    
+    myDiv.appendChild(myButton1);
+    
+    myButton1.textContent ="hello";
+    
+    // gives me a list of nodes
+    console.log(node.childNodes);
+    
+    
+    documentVar.appendChild(myDiv);
+    
+    
+    
+    
+  }
+  asTabs(document.querySelector("tab-panel"));
+</script>

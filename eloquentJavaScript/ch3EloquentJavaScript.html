@@ -1,0 +1,133 @@
+// Your code here.
+function min(arg1,arg2)
+{
+  if (arg1 < arg2)
+    return arg1;
+  else
+    return arg2;
+  
+}
+
+console.log(min(0, 10));
+// → 0
+console.log(min(0, -10));
+// → -10
+
+
+// end exercise one
+
+
+// Your code here.
+
+function isEven(number)
+{
+ if (number == 0)
+   return true;
+  
+  if (number == 1)
+    return false;
+  
+  if (number == -1)
+    return false;
+  
+  return isEven(number -2);
+  
+  
+  
+}
+
+
+
+console.log(isEven(50));
+// → true
+console.log(isEven(75));
+// → false
+console.log(isEven(-1));
+// → ??
+
+// end exercise 2
+
+
+// Your code here.
+function countBs(word)
+{
+  
+  let number = 0;
+  
+  for (let i = 0; i < word.length; i++)
+  {
+    if (word[i] == "B")
+      number++;    
+  }
+  return number; 
+}
+
+function countChar(word,letter)
+{
+    let number = 0;
+  
+  for (let i = 0; i < word.length; i++)
+  {
+    if (word[i] == letter)
+      number++;    
+  }
+  return number; 
+  
+  
+}
+
+
+
+console.log(countBs("BBC"));
+// → 2
+console.log(countChar("kakkerlak", "k"));
+// → 4
+
+
+// they wanted me to rewrite it
+
+
+// Your code here.
+function countBs(word)
+{
+  
+  let number = 0;
+  
+  number = countChar(word);
+
+  
+  return number; 
+}
+
+function countChar(word,letter)
+{
+    let number = 0;
+  
+  if (letter == null)
+  {
+   letter = "B"; 
+    
+  }
+  
+  for (let i = 0; i < word.length; i++)
+  {
+    if (word[i] == letter)
+      number++;    
+  }
+  return number; 
+  
+  
+}
+
+
+
+console.log(countBs("BBC"));
+// → 2
+console.log(countChar("kakkerlak", "k"));
+// → 4
+
+
+
+// end exercise 3
+
+
