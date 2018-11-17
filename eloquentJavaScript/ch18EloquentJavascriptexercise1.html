@@ -1,0 +1,76 @@
+<head>
+
+    <script>
+    
+    //CONTENT NEGOTIATION 
+
+// my attempt
+fetch("https://eloquentjavascript.net/author").then(response => {
+  
+  // it is 200 so we are good.
+  console.log(response.status);
+  // → 200
+  
+  // its text
+  console.log(response.headers.get("Content-Type"));
+  // → text/plain
+  
+  let blah = response.json();
+  console.log(JSON.stringify(blah));
+  
+});
+
+
+
+// his attempt
+const url = "https://eloquentjavascript.net/author";
+
+const types = ["text/plain",
+
+               "text/html",
+
+               "application/json",
+
+               "application/rainbows+unicorns"];
+
+
+
+async function showTypes() {
+
+  for (let type of types) {
+
+    // he uses await to wait for whats coming
+    let resp = await fetch(url, {headers: {accept: type}});
+
+    // he logs whats there
+    console.log(`${type}: ${await resp.text()}\n`);
+
+  }
+
+}
+
+
+
+showTypes();
+
+
+/***************
+* second activity on chapter 18
+* Javascript workbench
+*
+**************/
+
+
+
+
+
+
+    
+    </script>
+</head>
+
+<body>
+
+
+
+</body>
